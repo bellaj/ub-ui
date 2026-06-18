@@ -4,6 +4,8 @@ This repository contains the source code for the common UI deployed in Project U
 
 The UI is a consolidated UI that allows single page access to all banks and MAS view. Only one instance is required per platform.
 
+![UBIN on Hyperledger Fabric UI](ubin-front.png)
+
 ## Prerequisites
 
 Node.js and NPM is required to build the UI. After those are installed, run the following commands:
