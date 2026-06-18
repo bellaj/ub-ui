@@ -101,10 +101,8 @@ function constants(ENV) {
     }
   };
 
-  // Single-VM 3-org network (MAS + BOFA + CHASSGSG). All banks share one API on port 8080.
-  // Edit host if the UI runs on a different machine than the Fabric VM.
+  // Single-VM 3-org network: one Fabric API process per bank (see ub-fabric api/scripts/ecosystem.config.js).
   var fabricApiHost = "192.168.11.117";
-  var fabricApiPort = "8080";
   var fabricMepsEndpoint = "http://" + fabricApiHost + ":9001";
 
   var fabricConstants = {
@@ -112,7 +110,7 @@ function constants(ENV) {
   	"bankNodes": {
     	"MASGSGSG": {
     		"host": fabricApiHost,
-    		"port": fabricApiPort,
+    		"port": "8080",
     		"bankName": "Monetary Authority of Singapore",
     		"shortName": "MAS",
     		"centralBank": true,
@@ -120,7 +118,7 @@ function constants(ENV) {
 			},
 			"BOFASG2X": {
 	    		"host": fabricApiHost,
-	    		"port": fabricApiPort,
+	    		"port": "8081",
 	    		"bankName": "Bank of America Merrill Lynch",
 	    		"shortName": "BAML",
 	    		"centralBank": false,
@@ -128,7 +126,7 @@ function constants(ENV) {
 			},
 			"CHASSGSG": {
 	    		"host": fabricApiHost,
-	    		"port": fabricApiPort,
+	    		"port": "8082",
 	    		"bankName": "J.P. Morgan Chase",
 	    		"shortName": "JPM",
 	    		"centralBank": false,

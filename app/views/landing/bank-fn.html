@@ -1,14 +1,16 @@
 <div ng-controller="bankFnController">
 	<div class="tab-section">
 		<ul class="nav nav-pills">
-			<li class="active"><a data-toggle="tab" data-target="#transfer">Transfer</a></li>
+			<li ng-if="!adminView" class="active"><a data-toggle="tab" data-target="#transfer">Transfer</a></li>
+			<li ng-if="adminView" class="active"><a data-toggle="tab" data-target="#pledge">Pledge</a></li>
+			<li ng-if="adminView"><a data-toggle="tab" data-target="#redeem">Redeem</a></li>
 			<li ng-if="!adminView"><a data-toggle="tab" data-target="#pledge">Pledge</a></li>
 			<li ng-if="!adminView"><a data-toggle="tab" data-target="#redeem">Redeem</a></li>
 			<li ng-if="!adminView && platform === 'fabric'"><a data-toggle="tab" data-target="#funds">Move Funds</a></li>
 		</ul>
 	</div>
 	<div class="tab-content">
-		<div id="transfer" class="tab-pane fade in active">
+		<div id="transfer" ng-if="!adminView" class="tab-pane fade in active">
 			<div class="row">
 				<div class="col-sm-8">
 					<label for="" class="">
@@ -44,7 +46,7 @@
 				</div>
 			</div>
 		</div>
-		<div id="pledge" class="tab-pane fade">
+		<div id="pledge" class="tab-pane fade" ng-class="{'in active': adminView}">
 			<div class="row">
 				<div class="col-sm-8">
 					<label for="" class="">Amount</label>
