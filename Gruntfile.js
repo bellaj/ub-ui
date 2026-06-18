@@ -204,7 +204,8 @@ module.exports = function(grunt) {
         wiredep: {
             app: {
                 src: ['<%= ubin.app %>/index.html'],
-                ignorePath: /\.\.\//
+                ignorePath: /\.\.\//,
+                exclude: [/angular-spinner/, /spin\.js/]
             },
             sass: {
                 src: ['<%= ubin.app %>/styles/{,*/}*.{scss,sass}'],
