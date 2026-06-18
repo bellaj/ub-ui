@@ -101,105 +101,37 @@ function constants(ENV) {
     }
   };
 
+  // Single-VM 3-org network (MAS + BOFA + CHASSGSG). All banks share one API on port 8080.
+  // Edit host if the UI runs on a different machine than the Fabric VM.
+  var fabricApiHost = "192.168.11.117";
+  var fabricApiPort = "8080";
+
   var fabricConstants = {
-  	"mepsEndpoint": "http://fabricnx02.southeastasia.cloudapp.azure.com:9001",
   	"bankNodes": {
     	"MASGSGSG": {
-    		"host": "fabricnx02.southeastasia.cloudapp.azure.com",
-    		"port": "8080",
+    		"host": fabricApiHost,
+    		"port": fabricApiPort,
     		"bankName": "Monetary Authority of Singapore",
     		"shortName": "MAS",
     		"centralBank": true,
     		"regulator": true
 			},
 			"BOFASG2X": {
-	    		"host": "fabricnx03.southeastasia.cloudapp.azure.com",
-	    		"port": "8080",
+	    		"host": fabricApiHost,
+	    		"port": fabricApiPort,
 	    		"bankName": "Bank of America Merrill Lynch",
 	    		"shortName": "BAML",
 	    		"centralBank": false,
 	    		"regulator": false
 			},
 			"CHASSGSG": {
-	    		"host": "fabricnx04.southeastasia.cloudapp.azure.com",
-	    		"port": "8080",
+	    		"host": fabricApiHost,
+	    		"port": fabricApiPort,
 	    		"bankName": "J.P. Morgan Chase",
 	    		"shortName": "JPM",
 	    		"centralBank": false,
 	    		"regulator": false
-			},
-			"CITISGSG": {
-    		"host": "fabricnx05.southeastasia.cloudapp.azure.com",
-    		"port": "8080",
-    		"bankName": "Citi",
-    		"shortName": "Citi",
-    		"centralBank": false,
-    		"regulator": false
-    	},
-    	"CSFBSGSX": {
-    		"host": "fabricnx06.southeastasia.cloudapp.azure.com",
-    		"port": "8080",
-    		"bankName": "Credit Suisse",
-    		"shortName": "CS",
-    		"centralBank": false,
-    		"regulator": false
-			},
-			"DBSSSGSG": {
-	    		"host": "fabricnx07.southeastasia.cloudapp.azure.com",
-	    		"port": "8080",
-	    		"bankName": "DBS Bank Ltd",
-	    		"shortName": "DBS",
-	    		"centralBank": false,
-	    		"regulator": false
-			},
-			"HSBCSGSG": {
-    		"host": "fabricnx08.southeastasia.cloudapp.azure.com",
-    		"port": "8080",
-    		"bankName": "HSBC Limited",
-    		"shortName": "HSBC",
-    		"centralBank": false,
-    		"regulator": false
-    	},
-    	"MTBCSGSG": {
-    		"host": "fabricnx09.southeastasia.cloudapp.azure.com",
-    		"port": "8080",
-    		"bankName": "Mitsubishi UFJ Financial Group, Inc.",
-    		"shortName": "MUFG",
-    		"centralBank": false,
-    		"regulator": false
-    	},
-    	"OCBCSGSG": {
-    		"host": "fabricnx010.southeastasia.cloudapp.azure.com",
-    		"port": "8080",
-    		"bankName": "Oversea-Chinese Banking Corporation Ltd",
-    		"shortName": "OCBC",
-    		"centralBank": false,
-    		"regulator": false
-    	},
-    	"SCBLSGSG": {
-    		"host": "fabricnx011.southeastasia.cloudapp.azure.com",
-    		"port": "8080",
-    		"bankName": "Standard Chartered Bank",
-    		"shortName": "SC",
-    		"centralBank": false,
-    		"regulator": false
-    	},
-    	"UOBVSGSG": {
-    		"host": "fabricnx012.southeastasia.cloudapp.azure.com",
-    		"port": "8080",
-    		"bankName": "United Overseas Bank",
-    		"shortName": "UOB",
-    		"centralBank": false,
-    		"regulator": false
-    	},
-    	"XSIMSGSG": {
-    		"host": "fabricnx013.southeastasia.cloudapp.azure.com",
-    		"port": "8080",
-    		"bankName": "Singapore Exchange",
-    		"shortName": "SGX",
-    		"centralBank": false,
-    		"regulator": false
-    	}
+			}
     },
     type: {
     	completedtx: "Transfer",
@@ -351,7 +283,7 @@ function constants(ENV) {
   	unknown: "Unknown"
   };
 
-  constants.defaultBankLoc = "CSFBSGSX";
+  constants.defaultBankLoc = "BOFASG2X";
   constants.regulator = "MASGSGSG";
   constants.currencySymbol = "S$";
   constants.error = "error";

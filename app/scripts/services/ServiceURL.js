@@ -3,48 +3,36 @@
 function serviceUrl(sharedDataServices, ENV, constants) {
 	var currentBank = sharedDataServices.getCurrentBank();
 	var mepsEndpoint = constants[ENV.platform].mepsEndpoint;
+	var api = sharedDataServices.getCurrentApi();
+	var urls = {
+		"me": api + "/api/bank/info",
+		"counterparties": api + "/api/bank/counterparties",
+		"outgoing": api + "/api/queue/out",
+		"incoming": api + "/api/queue/in",
+		"transfer": api + "/api/fund/transfer",
+		"transactions": api + "/api/bank/transactions",
+		"priority": api + "/api/queue/priority",
+		"status": api + "/api/queue/status",
+		"cancel": api + "/api/queue/cancel",
+		"nettingStatus": api + "/api/netting/status",
+		"netting": api + "/api/netting",
+		"settleQueue": api + "/api/queue/settle",
+		"balanceAll": api + "/api/bank/balance/all",
+		"moveFunds": api + "/api/fund/interchannel/transfer"
+	};
 	return {
 		"loadUrl":function(){
 			if (ENV.platform === 'corda') {
-				return {
-					"me": sharedDataServices.getCurrentApi() + "/api/bank/info",
-					"counterparties": sharedDataServices.getCurrentApi() + "/api/bank/counterparties",
-					"outgoing": sharedDataServices.getCurrentApi() + "/api/queue/out",
-					"incoming": sharedDataServices.getCurrentApi() + "/api/queue/in",
-					"transfer": sharedDataServices.getCurrentApi() + "/api/fund/transfer",
-					"transactions": sharedDataServices.getCurrentApi() + "/api/bank/transactions",
-					"pledge": mepsEndpoint + "/meps/pledge",
-					"redeem": sharedDataServices.getCurrentApi() + "/api/fund/redeem",
-					"priority": sharedDataServices.getCurrentApi() + "/api/queue/priority",
-					"status": sharedDataServices.getCurrentApi() + "/api/queue/status",
-					"cancel": sharedDataServices.getCurrentApi() + "/api/queue/cancel",
-					"nettingStatus": sharedDataServices.getCurrentApi() + "/api/netting/status",
-					"netting": sharedDataServices.getCurrentApi() + "/api/netting",
-					"settleQueue": sharedDataServices.getCurrentApi() + "/api/queue/settle",
-					"balanceAll": sharedDataServices.getCurrentApi() + "/api/bank/balance/all",
-					"moveFunds": sharedDataServices.getCurrentApi() + "/api/fund/interchannel/transfer"
-				}; 
+				urls.pledge = mepsEndpoint + "/meps/pledge";
+				urls.redeem = api + "/api/fund/redeem";
+			} else if (ENV.platform === 'fabric') {
+				urls.pledge = api + "/api/fund/pledge";
+				urls.redeem = api + "/api/fund/redeem";
 			} else {
-				return {
-					"me": sharedDataServices.getCurrentApi() + "/api/bank/info",
-					"counterparties": sharedDataServices.getCurrentApi() + "/api/bank/counterparties",
-					"outgoing": sharedDataServices.getCurrentApi() + "/api/queue/out",
-					"incoming": sharedDataServices.getCurrentApi() + "/api/queue/in",
-					"transfer": sharedDataServices.getCurrentApi() + "/api/fund/transfer",
-					"transactions": sharedDataServices.getCurrentApi() + "/api/bank/transactions",
-					"pledge": mepsEndpoint + "/meps/pledge",
-					"redeem": mepsEndpoint + "/meps/redeem",
-					"priority": sharedDataServices.getCurrentApi() + "/api/queue/priority",
-					"status": sharedDataServices.getCurrentApi() + "/api/queue/status",
-					"cancel": sharedDataServices.getCurrentApi() + "/api/queue/cancel",
-					"nettingStatus": sharedDataServices.getCurrentApi() + "/api/netting/status",
-					"netting": sharedDataServices.getCurrentApi() + "/api/netting",
-					"settleQueue": sharedDataServices.getCurrentApi() + "/api/queue/settle",
-					"balanceAll": sharedDataServices.getCurrentApi() + "/api/bank/balance/all",
-					"moveFunds": sharedDataServices.getCurrentApi() + "/api/fund/interchannel/transfer"
-				}; 
+				urls.pledge = mepsEndpoint + "/meps/pledge";
+				urls.redeem = mepsEndpoint + "/meps/redeem";
 			}
-			
+			return urls;
 		}
 	};
 }

@@ -18,12 +18,13 @@ bower install
 ## Configuration
 
 1. Go to [app/scripts/services/Constants.js](app/scripts/services/Constants.js)
-2. The endpoints for each platform are stored its own variable map.
+2. The endpoints for each platform are stored in its own variable map.
     - Corda configuration key: `cordaConstants`
     - Hyperledger Fabric configuration key: `fabricConstants`
     - Quorum configuration key: `quorumConstants`
-3. Under the specific platform key (e.g. `cordaConstants`), edit the `mepsEndpoint` to point to the URL where [`ubin-ext-service`](https://github.com/project-ubin/ubin-ext-service) has been deployed and run for the environment.
-4. Under `bankNodes` key, each key (e.g. `MASGSGSG`) represents the BIC of the participating nodes. Edit the `host` and `port` keys accordingly to match the environment nodes.
+3. **Hyperledger Fabric (single-VM):** The UI is preconfigured for the 3-org network (MAS, BOFA, CHASSGSG). Edit `fabricApiHost` and `fabricApiPort` in `fabricConstants` to match your deployed Fabric API (default: `192.168.11.117:8080`). Pledge and redeem go directly to the Fabric API (`/api/fund/pledge`, `/api/fund/redeem`); `ubin-ext-service` is not required.
+4. **Corda / Quorum:** Under the platform key (e.g. `cordaConstants`), edit `mepsEndpoint` to point to the URL where [`ubin-ext-service`](https://github.com/project-ubin/ubin-ext-service) has been deployed.
+5. Under `bankNodes`, each key (e.g. `MASGSGSG`) represents the BIC of a participating node. Edit `host` and `port` to match the environment (for multi-VM Fabric, each bank has its own API host).
 
 ```js
 	var cordaConstants = {
