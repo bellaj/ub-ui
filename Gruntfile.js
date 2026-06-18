@@ -214,6 +214,9 @@ module.exports = function(grunt) {
 
         // Compiles Sass to CSS and generates necessary files if requested
         sass: {
+        	options: {
+        		implementation: require('sass')
+        	},
         	dist: {
         		files: {
         			'.tmp/styles/main.css': '<%= ubin.app %>/styles/main.scss'
@@ -221,7 +224,7 @@ module.exports = function(grunt) {
         	},
         	server: {
         		options: {
-        			sourcemap: true
+        			sourceMap: true
             },
             files: {
         			'.tmp/styles/main.css': '<%= ubin.app %>/styles/main.scss'
