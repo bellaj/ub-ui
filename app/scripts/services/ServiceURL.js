@@ -25,8 +25,8 @@ function serviceUrl(sharedDataServices, ENV, constants) {
 				urls.pledge = mepsEndpoint + "/meps/pledge";
 				urls.redeem = api + "/api/fund/redeem";
 			} else if (ENV.platform === 'fabric') {
-				urls.pledge = api + "/api/fund/pledge";
-				urls.redeem = api + "/api/fund/redeem";
+				urls.pledge = mepsEndpoint + "/meps/pledge";
+				urls.redeem = mepsEndpoint + "/meps/redeem";
 			} else {
 				urls.pledge = mepsEndpoint + "/meps/pledge";
 				urls.redeem = mepsEndpoint + "/meps/redeem";

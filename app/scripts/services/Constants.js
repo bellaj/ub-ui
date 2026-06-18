@@ -105,8 +105,10 @@ function constants(ENV) {
   // Edit host if the UI runs on a different machine than the Fabric VM.
   var fabricApiHost = "192.168.11.117";
   var fabricApiPort = "8080";
+  var fabricMepsEndpoint = "http://" + fabricApiHost + ":9001";
 
   var fabricConstants = {
+  	"mepsEndpoint": fabricMepsEndpoint,
   	"bankNodes": {
     	"MASGSGSG": {
     		"host": fabricApiHost,
